@@ -4,15 +4,10 @@ defmodule CAStore do
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> CAStore.hello()
-      :world
-
+  Returns the path to the cacerts PEM file.
   """
-  def hello do
-    :world
+  @spec file_path() :: Path.t()
+  def file_path() do
+    Application.app_dir(:castore, "priv/cacerts.pem")
   end
 end
