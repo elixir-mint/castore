@@ -8,6 +8,7 @@ matrix:
 script:
   - mix format --check-formatted
   - mix test
+  - mix certdata
 notifications:
   recipients:
     - eric.meadows.jonsson@gmail.com
