@@ -1,14 +1,29 @@
 defmodule CAStore.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+  @repo_url "https://github.com/ericmj/castore"
+
   def project do
     [
       app: :castore,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+
+      # Hex
+      package: package(),
+      description: "Up-to-date CA certificate store.",
+
+      # Docs
+      name: "CAStore",
+      docs: [
+        main: "castore",
+        source_ref: "v#{@version}",
+        source_url: @repo_url
+      ]
     ]
   end
 
@@ -19,11 +34,21 @@ defmodule CAStore.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:ex_doc, "~> 0.19.3", only: :dev}
+    ]
   end
 
   defp aliases do
     [certdata: &certdata/1]
+  end
+
+  defp package do
+    [
+      maintainers: ["Eric Meadows-Jönsson", "Andrea Leopardi"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => @repo_url}
+    ]
   end
 
   @mk_ca_bundle_url "https://raw.githubusercontent.com/curl/curl/master/lib/mk-ca-bundle.pl"
