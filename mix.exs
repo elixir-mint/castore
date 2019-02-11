@@ -19,7 +19,6 @@ defmodule CAStore.MixProject do
       # Docs
       name: "CAStore",
       docs: [
-        main: "castore",
         source_ref: "v#{@version}",
         source_url: @repo_url
       ]
