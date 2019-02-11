@@ -45,7 +45,6 @@ defmodule CAStore.MixProject do
 
   defp package do
     [
-      maintainers: ["Eric Meadows-Jönsson", "Andrea Leopardi"],
       licenses: ["Apache 2.0"],
       links: %{"GitHub" => @repo_url}
     ]
