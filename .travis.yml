@@ -7,7 +7,7 @@ elixir: '1.8'
 
 stages:
   - check formatted
-  - certdata
+  - check updated certdata
   - test
 
 jobs:
@@ -21,5 +21,6 @@ jobs:
     - stage: check formatted
       script: mix format --check-formatted
 
-    - stage: certdata
-      script: mix certdata
+    - stage: check updated certdata
+      script: mix certdata --check-updated
+      if: type = cron
