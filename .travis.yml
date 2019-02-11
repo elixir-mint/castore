@@ -23,3 +23,4 @@ jobs:
 
     - stage: check updated certdata
       script: mix certdata --check-updated
+      if: type = cron
