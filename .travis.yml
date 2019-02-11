@@ -1,14 +1,25 @@
 language: elixir
-matrix:
+
+sudo: false
+
+otp_release: '21.1'
+elixir: '1.8'
+
+stages:
+  - check formatted
+  - certdata
+  - test
+
+jobs:
   include:
-  - elixir: 1.7.4
-    otp_release: 21.1
-  - elixir: 1.0.5
-    otp_release: 17.5
-script:
-  - if [[ `elixir -v` = *"1.7"* ]]; then mix format --check-formatted; fi
-  - if [[ `elixir -v` = *"1.7"* ]]; then mix certdata; fi
-  - mix test
-notifications:
-  recipients:
-    - eric.meadows.jonsson@gmail.com
+    - stage: test
+      script: mix test --trace
+
+    - otp_release: '17.5'
+      elixir: '1.0'
+
+    - stage: check formatted
+      script: mix format --check-formatted
+
+    - stage: certdata
+      script: mix certdata
