@@ -11,7 +11,7 @@ In your `mix.exs`:
 ```elixir
 def deps do
   [
-    {:castore, ">= 0.0.0"}
+    {:castore, "~> 0.1.0"}
   ]
 end
 ```
