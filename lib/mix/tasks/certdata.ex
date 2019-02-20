@@ -44,7 +44,7 @@ defmodule Mix.Tasks.Certdata do
     File.rm!(@ca_bundle)
 
     if not MapSet.equal?(old_bundle, new_bundle) do
-      Mix.raise("#{CAStore.file_path()} is outdated. Run \"mix certfile\" to update it.")
+      Mix.raise("#{CAStore.file_path()} is outdated. Run \"mix certdata\" to update it.")
     end
   end
 
