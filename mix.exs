@@ -39,7 +39,7 @@ defmodule CAStore.MixProject do
 
   defp package do
     [
-      files: ["lib/castore.ex", "priv", "mix.exs", "README.md"],
+      files: ["lib/castore.ex", "lib/mix/tasks/certdata.ex", "priv", "mix.exs", "README.md"],
       licenses: ["Apache 2.0"],
       links: %{"GitHub" => @repo_url}
     ]
