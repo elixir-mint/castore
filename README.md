@@ -31,7 +31,7 @@ See [the documentation](https://hexdocs.pm/castore).
 
 ## Contributing
 
-If you want to locally update the CA certificate store file bundled with this library, run the `mix certfile` from the root of this library.
+If you want to locally update the CA certificate store file bundled with this library, run the `mix certdata` from the root of this library.
 
 ## License
 
