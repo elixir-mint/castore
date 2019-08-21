@@ -2,8 +2,8 @@ language: elixir
 
 sudo: false
 
-otp_release: '21.1'
-elixir: '1.8'
+otp_release: '22.0'
+elixir: '1.9'
 
 stages:
   - check formatted
@@ -15,8 +15,13 @@ jobs:
     - stage: test
       script: mix test --trace
 
-    - otp_release: '17.5'
-      elixir: '1.0'
+    # Elixir 1.3 is the first one that supports OTP 19, and Travis
+    # seems to not support OTP 18 anymore.
+    - otp_release: '19.3'
+      elixir: '1.3'
+
+    - otp_release: '21.3'
+      elixir: '1.8'
 
     - stage: check formatted
       script: mix format --check-formatted
