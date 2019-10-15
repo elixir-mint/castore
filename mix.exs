@@ -1,7 +1,7 @@
 defmodule CAStore.MixProject do
   use Mix.Project
 
-  @version "0.1.3"
+  @version "0.1.4"
   @repo_url "https://github.com/ericmj/castore"
 
   def project do
