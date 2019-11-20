@@ -1,0 +1,23 @@
+name: Outdated
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+  outdated:
+    name: Check outdated
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install OTP and Elixir
+        uses: ericmj/setup-elixir@14bacb3
+        with:
+          otp-version: 22.1
+          elixir-version: 1.9.4
+
+      - name: Check outdated certdata
+        run: |
+          mix compile --no-deps-check
+          mix certdata --check-outdated
