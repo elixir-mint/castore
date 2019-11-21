@@ -20,4 +20,4 @@ jobs:
       - name: Check outdated certdata
         run: |
           mix compile --no-deps-check
-          mix certdata --check-outdated
+          mix do loadpaths --no-deps-check, certdata --check-outdated
