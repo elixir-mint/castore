@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Install OTP and Elixir
-        uses: ericmj/setup-elixir@14bacb3
+        uses: actions/setup-elixir@v1
         with:
           otp-version: 22.1
           elixir-version: 1.9.4
