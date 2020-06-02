@@ -26,17 +26,20 @@ defmodule Mix.Tasks.Certdata do
   @mk_ca_bundle_cmd "mk-ca-bundle.pl"
   @ca_bundle "ca-bundle.crt"
   @ca_bundle_target "priv/cacerts.pem"
+  @cert_exceptions ["AddTrust External Root"]
 
   @impl true
   def run(args)
 
   def run([]) do
     fetch_ca_bundle()
+    apply_exceptions()
     File.rename(@ca_bundle, @ca_bundle_target)
   end
 
   def run(["--check-outdated"]) do
     fetch_ca_bundle()
+    apply_exceptions()
 
     old_bundle = read_certificates_set(CAStore.file_path())
     new_bundle = read_certificates_set(@ca_bundle)
@@ -61,6 +64,17 @@ defmodule Mix.Tasks.Certdata do
     after
       File.rm!(@mk_ca_bundle_cmd)
     end
+  end
+
+  defp apply_exceptions() do
+    bundle = File.read!(@ca_bundle)
+
+    bundle =
+      Enum.reduce(@cert_exceptions, bundle, fn cert, bundle ->
+        Regex.replace(~r"#{cert}.*-----END CERTIFICATE-----\n\n"Us, bundle, "")
+      end)
+
+    File.write!(@ca_bundle, bundle)
   end
 
   defp cmd!(cmd) do
