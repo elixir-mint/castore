@@ -71,7 +71,7 @@ defmodule Mix.Tasks.Certdata do
 
     bundle =
       Enum.reduce(@cert_exceptions, bundle, fn cert, bundle ->
-        Regex.replace(~r"#{cert}.*-----END CERTIFICATE-----\n\n"Us, bundle, "")
+        Regex.replace(~r"\n#{cert}.*-----END CERTIFICATE-----\n"Us, bundle, "")
       end)
 
     File.write!(@ca_bundle, bundle)
