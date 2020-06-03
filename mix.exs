@@ -34,7 +34,7 @@ defmodule CAStore.MixProject do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.19.3", only: :dev}
+      {:ex_doc, "~> 0.22", only: :dev}
     ]
   end
 
