@@ -11,6 +11,7 @@ defmodule CAStore.MixProject do
       elixir: "~> 1.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      xref: [exclude: [:public_key]],
 
       # Hex
       package: package(),
