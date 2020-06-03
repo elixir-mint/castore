@@ -51,7 +51,8 @@ defmodule CAStoreTest do
       |> validity(:notAfter)
       |> parse_asn1_date_time()
 
-    DateTime.diff(not_after, DateTime.utc_now()) < @expiry_window
+    threshold = DateTime.to_unix(DateTime.utc_now()) + @expiry_window
+    DateTime.to_unix(not_after) <  threshold
   end
 
   # Technically we would have to acount for utcTime values between 1950 and
