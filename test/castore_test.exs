@@ -61,12 +61,12 @@ defmodule CAStoreTest do
   end
 
   defp parse_asn1_date_time({:generalTime, date_time}) when length(date_time) == 15 do
-    [century, year, month, day | _] = Enum.chunk_every(date_time, 2)
+    [y1, y2, y3, y4, m1, m2, d1, d2 | _] = date_time
 
     %DateTime{
-      year: List.to_integer(century) * 100 + List.to_integer(year),
-      month: List.to_integer(month),
-      day: List.to_integer(day),
+      year: List.to_integer([y1, y2, y3, y4]),
+      month: List.to_integer([m1, m2]),
+      day: List.to_integer([d1, d2]),
       hour: 0,
       minute: 0,
       second: 0,
