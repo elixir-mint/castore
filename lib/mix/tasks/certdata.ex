@@ -65,9 +65,8 @@ defmodule Mix.Tasks.Certdata do
       fetch_ca_bundle()
       |> parse_bundle()
       |> filter_expired()
-      |> rebuild_bundle()
 
-    old_bundle = read_certificates_set(File.read!(CAStore.file_path()))
+    old_bundle = read_certificates_set(parse_bundle(File.read!(CAStore.file_path())))
     new_bundle = read_certificates_set(new_bundle)
 
     if not MapSet.equal?(old_bundle, new_bundle) do
@@ -102,10 +101,8 @@ defmodule Mix.Tasks.Certdata do
     end
   end
 
-  defp read_certificates_set(bundle) do
-    bundle
-    |> :public_key.pem_decode()
-    |> MapSet.new()
+  defp read_certificates_set({_comments, bundle}) do
+    MapSet.new(bundle)
   end
 
   defp parse_bundle(bundle) do
