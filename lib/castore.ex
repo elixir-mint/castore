@@ -21,4 +21,22 @@ defmodule CAStore do
   def file_path() do
     Application.app_dir(:castore, "priv/cacerts.pem")
   end
+
+  @doc """
+  Returns parsed CA certificates in a form suitable for Erlang SSL clients.
+
+  Replaces `:certifi.cacerts/0`.
+
+  ## Examples
+
+      :hackney.request(:get, url, [], [], [ssl_options: [cacerts: CAStore.cacerts()]])
+
+  """
+  @spec cacerts() :: :ssl.client_cacerts()
+  def cacerts() do
+    file_path()
+    |> File.read!()
+    |> :public_key.pem_decode()
+    |> Enum.map(fn {:Certificate, der, _} -> der end)
+  end
 end
