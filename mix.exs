@@ -41,7 +41,7 @@ defmodule CAStore.MixProject do
   defp package do
     [
       files: ["lib/castore.ex", "priv", "mix.exs", "README.md"],
-      licenses: ["Apache 2.0"],
+      licenses: ["Apache-2.0"],
       links: %{"GitHub" => @repo_url}
     ]
   end
