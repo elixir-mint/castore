@@ -2,7 +2,7 @@ defmodule CAStore.MixProject do
   use Mix.Project
 
   @version "0.1.7"
-  @repo_url "https://github.com/ericmj/castore"
+  @repo_url "https://github.com/elixir-mint/castore"
 
   def project do
     [
@@ -41,7 +41,7 @@ defmodule CAStore.MixProject do
   defp package do
     [
       files: ["lib/castore.ex", "priv", "mix.exs", "README.md"],
-      licenses: ["Apache 2.0"],
+      licenses: ["Apache-2.0"],
       links: %{"GitHub" => @repo_url}
     ]
   end
