@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pair:
+        include:
           - erlang: 23.0
             elixir: 1.11.2
           - erlang: 23.0
@@ -50,8 +50,8 @@ jobs:
       - name: Install OTP and Elixir
         uses: actions/setup-elixir@v1
         with:
-          otp-version: ${{matrix.pair.erlang}}
-          elixir-version: ${{matrix.pair.elixir}}
+          otp-version: ${{matrix.erlang}}
+          elixir-version: ${{matrix.elixir}}
 
       - name: Run tests
         run: |
