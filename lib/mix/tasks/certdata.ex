@@ -79,7 +79,7 @@ defmodule Mix.Tasks.Certdata do
   end
 
   defp fetch_ca_bundle do
-    cmd!("wget #{@mk_ca_bundle_url}")
+    fetch!(@mk_ca_bundle_url)
 
     try do
       File.chmod!(@mk_ca_bundle_cmd, 0o755)
@@ -88,6 +88,14 @@ defmodule Mix.Tasks.Certdata do
     after
       File.rm!(@mk_ca_bundle_cmd)
       File.rm!(@ca_bundle)
+    end
+  end
+
+  defp fetch!(url) do
+    if System.find_executable("curl") do
+      cmd!("curl -LO #{url}")
+    else
+      cmd!("wget #{url}")
     end
   end
 
