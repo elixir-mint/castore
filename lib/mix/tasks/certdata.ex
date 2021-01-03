@@ -22,19 +22,19 @@ defmodule Mix.Tasks.Certdata do
 
   require Record
 
-  Record.defrecord(
+  Record.defrecordp(
     :certificate,
     :Certificate,
     Record.extract(:Certificate, from_lib: "public_key/include/OTP-PUB-KEY.hrl")
   )
 
-  Record.defrecord(
+  Record.defrecordp(
     :tbs_certificate,
     :TBSCertificate,
     Record.extract(:TBSCertificate, from_lib: "public_key/include/OTP-PUB-KEY.hrl")
   )
 
-  Record.defrecord(
+  Record.defrecordp(
     :validity,
     :Validity,
     Record.extract(:Validity, from_lib: "public_key/include/OTP-PUB-KEY.hrl")
