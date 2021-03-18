@@ -20,4 +20,6 @@ jobs:
       - name: Check outdated certdata
         run: |
           mix compile --no-deps-check
-          mix do loadpaths --no-deps-check, certdata --check-outdated
+          .github/workflows/outdated.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
