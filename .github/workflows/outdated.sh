@@ -1,7 +1,10 @@
 #!/bin/bash
 
+git config user.name "GitHub Actions"
+git config user.email "actions@users.noreply.github.com"
+git checkout outdated || git checkout -b outdated
+
 if ! mix certdata --check-outdated; then
-  git checkout outdated || git checkout -b outdated
   mix certdata
   git add .
   git commit -m "Update certificates"

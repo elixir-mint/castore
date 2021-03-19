@@ -9,7 +9,9 @@ jobs:
     name: Check outdated
     runs-on: ubuntu-16.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Install OTP and Elixir
         uses: erlef/setup-elixir@v1
@@ -19,7 +21,8 @@ jobs:
 
       - name: Check outdated certdata
         run: |
-          mix compile --no-deps-check
+          mix deps.get
+          mix compile
           .github/workflows/outdated.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
