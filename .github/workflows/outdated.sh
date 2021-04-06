@@ -10,7 +10,7 @@ if ! mix certdata --check-outdated; then
   git commit -m "Update certificates"
   git push --set-upstream origin outdated
 
-  if [[ $(gh pr list --base outdated) == "" ]]; then
-    gh pr create --fill
+  if [[ $(gh pr list --state open --label "outdated check") == "" ]]; then
+    gh pr create --fill --label "outdated check"
   fi
 fi
