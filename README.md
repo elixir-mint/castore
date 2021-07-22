@@ -1,7 +1,5 @@
 # CAStore
 
-[![Build Status](https://travis-ci.com/ericmj/castore.svg?branch=master)](https://travis-ci.com/ericmj/castore)
-
 Up-to-date CA certificate store.
 
 ## Installation
