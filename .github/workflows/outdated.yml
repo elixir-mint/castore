@@ -14,10 +14,10 @@ jobs:
           fetch-depth: 0
 
       - name: Install OTP and Elixir
-        uses: erlef/setup-elixir@v1
+        uses: erlef/setup-beam@v1
         with:
-          otp-version: 22.1
-          elixir-version: 1.9.4
+          otp-version: 24.0
+          elixir-version: 1.12.2
 
       - name: Check outdated certdata
         run: |
