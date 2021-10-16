@@ -160,7 +160,7 @@ defmodule Mix.Tasks.Certdata do
     DateTime.to_unix(not_after) < DateTime.to_unix(DateTime.utc_now())
   end
 
-  # Technically we would have to acount for utcTime values between 1950 and
+  # Technically we would have to account for utcTime values between 1950 and
   # 2000, but I think it is safe to ignore that here
   defp parse_asn1_date_time({:utcTime, date_time}) when length(date_time) == 13 do
     parse_asn1_date_time({:generalTime, [?2, ?0 | date_time]})
