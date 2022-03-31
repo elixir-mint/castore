@@ -42,7 +42,7 @@ defmodule Mix.Tasks.Certdata do
 
   @shortdoc "Fetches an up-to-date version of the CA certificate store"
 
-  @mk_ca_bundle_url "https://raw.githubusercontent.com/curl/curl/master/lib/mk-ca-bundle.pl"
+  @mk_ca_bundle_url "https://raw.githubusercontent.com/curl/curl/master/scripts/mk-ca-bundle.pl"
   @mk_ca_bundle_cmd "mk-ca-bundle.pl"
   @ca_bundle "ca-bundle.crt"
   @ca_bundle_target "priv/cacerts.pem"
