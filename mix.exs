@@ -1,7 +1,7 @@
 defmodule CAStore.MixProject do
   use Mix.Project
 
-  @version "1.0.0"
+  @version "1.0.1"
   @repo_url "https://github.com/elixir-mint/castore"
 
   def project do
