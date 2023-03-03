@@ -28,9 +28,12 @@ defmodule CAStore.MixProject do
 
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: extra_applications(Mix.env())
     ]
   end
+
+  defp extra_applications(:dev), do: [:public_key] ++ extra_applications(:prod)
+  defp extra_applications(_env), do: [:logger]
 
   defp deps do
     [
