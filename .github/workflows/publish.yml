@@ -1,8 +1,9 @@
-name: Outdated
+name: Publish
 
 on:
-  schedule:
-    - cron: '0 1 * * *'
+  push:
+    branches:
+      - main
 
 jobs:
   outdated:
@@ -10,8 +11,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
       - name: Install OTP and Elixir
         uses: erlef/setup-beam@v1
@@ -19,10 +18,10 @@ jobs:
           otp-version: 25.2
           elixir-version: 1.14.3
 
-      - name: Check outdated certdata
+      - name: Publish
         run: |
           mix deps.get
           mix compile
-          .github/workflows/outdated.sh
+          .github/workflows/publish.sh
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
