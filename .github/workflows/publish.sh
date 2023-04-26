@@ -8,7 +8,7 @@ if [[ "${changed_version}" ]]; then
   git config user.name "${GITHUB_ACTOR}"
   git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
   git tag "v$(shell cat VERSION)"
-	git push --tags
+  git push --tags
 
   mix hex.publish --yes
 else
