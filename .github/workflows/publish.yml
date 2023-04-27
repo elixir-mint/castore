@@ -6,16 +6,16 @@ on:
       - main
 
 jobs:
-  outdated:
-    name: Check outdated
+  publish:
+    name: Publish
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install OTP and Elixir
         uses: erlef/setup-beam@v1
         with:
-          otp-version: 25.2
+          otp-version: 25.3
           elixir-version: 1.14.3
 
       - name: Publish
