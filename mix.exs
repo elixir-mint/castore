@@ -1,13 +1,12 @@
 defmodule CAStore.MixProject do
   use Mix.Project
 
-  @version "1.0.1"
   @repo_url "https://github.com/elixir-mint/castore"
 
   def project do
     [
       app: :castore,
-      version: @version,
+      version: version(),
       elixir: "~> 1.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -20,7 +19,7 @@ defmodule CAStore.MixProject do
       # Docs
       name: "CAStore",
       docs: [
-        source_ref: "v#{@version}",
+        source_ref: "v#{version()}",
         source_url: @repo_url
       ]
     ]
@@ -47,5 +46,11 @@ defmodule CAStore.MixProject do
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => @repo_url}
     ]
+  end
+
+  defp version do
+    "VERSION"
+    |> File.read!()
+    |> String.trim()
   end
 end
