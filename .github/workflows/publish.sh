@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Assume package name == repository name
+package="${GITHUB_REPOSITORY#*/}"$
+
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
@@ -11,7 +14,7 @@ else
   git push --tags
 fi
 
-if mix hex.info castore "$(cat VERSION)"; then
+if mix hex.info $package "$(cat VERSION)"; then
   echo "NOT PUBLISHING"
 else
   echo "PUBLISHING"
