@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Assume package name == repository name
-package="${GITHUB_REPOSITORY#*/}"$
+package="${GITHUB_REPOSITORY#*/}"
 
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
