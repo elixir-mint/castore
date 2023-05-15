@@ -2,15 +2,18 @@
 
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-changed_version="$(git diff --name-only HEAD~1 HEAD -- VERSION)"
 
-if [[ "${changed_version}" ]]; then
-  echo "Publishing because the version changed since the last commit"
-
+if [ $(git tag -l "v$(cat VERSION)") ]; then
+  echo "NOT TAGGING"
+else
+  echo "TAGGING"
   git tag "v$(cat VERSION)"
   git push --tags
+fi
 
-  mix hex.publish --yes
+if mix hex.info castore "$(cat VERSION)"; then
+  echo "NOT PUBLISHING"
 else
-  echo "Not publishing since the version didn't change since last commit"
+  echo "PUBLISHING"
+  mix hex.publish --yes
 fi
