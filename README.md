@@ -1,7 +1,8 @@
 # CAStore
 
-[![hex.pm badge](https://img.shields.io/badge/Package%20on%20hex.pm-informational)](https://hex.pm/packages/castore)
+[![CI badge](https://github.com/elixir-mint/castore/actions/workflows/ci.yml/badge.svg)](https://github.com/elixir-mint/castore/actions/workflows/ci.yml)
 [![Documentation badge](https://img.shields.io/badge/Documentation-ff69b4)](https://hexdocs.pm/castore)
+[![Hex.pm badge](https://img.shields.io/badge/Package%20on%20hex.pm-informational)](https://hex.pm/packages/castore)
 
 Up-to-date CA certificate store for Elixir.
 
