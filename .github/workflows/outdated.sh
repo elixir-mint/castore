@@ -12,7 +12,8 @@ git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git checkout outdated || git checkout -b outdated
 
-if ! mix certdata --check-outdated; then
+mix certdata --check-outdated
+if [ $? -eq 100 ]; then
   mix certdata
 
   if [[ $(check_pr) == "" ]]; then
