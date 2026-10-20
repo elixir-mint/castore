@@ -2,6 +2,9 @@ defmodule Mix.Tasks.Certdata do
   @moduledoc """
   Fetches an up-to-date version of the CA certificate store.
 
+  The certificates are taken from `certdata.txt` on the master branch of the NSS repository,
+  where Mozilla's root store changes land first.
+
   The certificate store is then stored in the private storage of this library. The path
   to the CA certificate store can be retrieved through `CAStore.file_path/0`.
 
@@ -44,6 +47,7 @@ defmodule Mix.Tasks.Certdata do
 
   @mk_ca_bundle_url "https://raw.githubusercontent.com/curl/curl/master/scripts/mk-ca-bundle.pl"
   @mk_ca_bundle_cmd "mk-ca-bundle.pl"
+  @certdata_url "https://raw.githubusercontent.com/nss-dev/nss/refs/heads/master/lib/ckfw/builtins/certdata.txt"
   @ca_bundle "ca-bundle.crt"
   @ca_bundle_target "priv/cacerts.pem"
 
@@ -85,7 +89,7 @@ defmodule Mix.Tasks.Certdata do
 
     try do
       File.chmod!(@mk_ca_bundle_cmd, 0o755)
-      cmd!("#{Path.expand(@mk_ca_bundle_cmd)} -u")
+      cmd!("#{Path.expand(@mk_ca_bundle_cmd)} -u -d #{@certdata_url}")
       File.read!(@ca_bundle)
     after
       File.rm!(@mk_ca_bundle_cmd)
