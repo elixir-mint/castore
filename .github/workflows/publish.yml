@@ -5,25 +5,36 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   publish:
     name: Publish
     runs-on: ubuntu-24.04
+    # The GitHub environment that castore's workload identity on hex.pm names
+    environment: release
+    permissions:
+      contents: write # push the version tag
+      id-token: write # the OIDC token mix hex.publish exchanges with Workload Identity
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Install OTP and Elixir
         uses: erlef/setup-beam@v1
         with:
-          otp-version: 25.3
-          elixir-version: 1.14.3
+          otp-version: "28"
+          elixir-version: "1.19"
+          install-hex: false
+
+      # Hex 2.6.0-dev, the first version that publishes with Workload Identity
+      - name: Install Hex
+        run: mix archive.install github hexpm/hex ref 1d155e718aa76ab75d03f6f4bdcb0d8042f9a0ad --force
 
       - name: Publish
         run: |
           mix deps.get
           mix compile
           .github/workflows/publish.sh
-        env:
-          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
