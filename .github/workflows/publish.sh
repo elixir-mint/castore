@@ -18,8 +18,8 @@ if mix hex.info $package "$(cat VERSION)"; then
   echo "NOT PUBLISHING"
 else
   echo "PUBLISHING"
-  
-  # Assumes HEX_API_KEY is set in GitHub Actions secrets
-  # https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+
+  # Authenticates with the package's workload identity on hex.pm
+  # https://hex.pm/docs/workload-identity
   mix hex.publish --yes
 fi
